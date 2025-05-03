@@ -1,5 +1,6 @@
 # Practica4: Sistemas Operativos en Tiempo Real
-## Objetivo: El objetivo de la práctica es comprender el funcionamiento de un sistema operativo en tiempo real. 
+## Objetivo: 
+El objetivo de la práctica es comprender el funcionamiento de un sistema operativo en tiempo real. 
 ## Apartado 1:
 En este apartado intentaremos cemostrar como FREERTOS maneja la ejecución de múltiples tareas en un ESP32. 
 Los materiales usados han sido:
