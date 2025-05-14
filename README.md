@@ -5,7 +5,7 @@ El objetivo de la práctica es comprender el funcionamiento de un sistema operat
 En este apartado intentaremos cemostrar como FREERTOS maneja la ejecución de múltiples tareas en un ESP32. 
 Los materiales usados han sido:
 1. Placa ESP32
-### Código usado:
+``
 ```
 #include <Arduino.h>
 #include<FreeRTOS.h>
@@ -60,7 +60,7 @@ this is ESP32 Task
 ## Apartado 2:
 En este apartado se quiere implementar dos tareas que trabajen de manera sincronizada para encender y apagar un LED usando semáforos en FreeRTOS.
 Los materiales usados han sido: 
-1. Placa ESP32
+1. Placa ESP32-S3
 2. Cable
 3. LED
 ### Código usado
