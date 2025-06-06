@@ -1,0 +1,46 @@
+#include <Arduino.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/semphr.h>
+
+#define LED_BUILTIN 2
+
+SemaphoreHandle_t xSemaphore;
+
+void turnOnLED(void *parameter) {
+  while (true) {
+    if (xSemaphoreTake(xSemaphore, portMAX_DELAY)) {
+      digitalWrite(LED_BUILTIN, HIGH);
+      Serial.println("LED ON");
+      vTaskDelay(500 / portTICK_PERIOD_MS);
+      xSemaphoreGive(xSemaphore);
+    }
+    vTaskDelay(10 / portTICK_PERIOD_MS);
+  }
+}
+
+void turnOffLED(void *parameter) {
+  while (true) {
+    if (xSemaphoreTake(xSemaphore, portMAX_DELAY)) {
+      digitalWrite(LED_BUILTIN, LOW);
+      Serial.println("LED OFF");
+      vTaskDelay(500 / portTICK_PERIOD_MS);
+      xSemaphoreGive(xSemaphore);
+    }
+    vTaskDelay(10 / portTICK_PERIOD_MS);
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(LED_BUILTIN, OUTPUT);
+
+  xSemaphore = xSemaphoreCreateBinary();
+  xSemaphoreGive(xSemaphore); // liberar al inicio
+
+  xTaskCreate(turnOnLED, "OnLED", 1000, NULL, 1, NULL);
+  xTaskCreate(turnOffLED, "OffLED", 1000, NULL, 1, NULL);
+}
+
+void loop() {
+  // No se usa
+}
